@@ -1,0 +1,31 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  The Findutils package contains programs to find files. These programs are provided to recursively search through a directory tree and to create, maintain, and search a database (often faster than the recursive find, but is unreliable if the database has not been recently updated).
+  Installed programs: find, locate, updatedb, and xargs
+  Installed directory: /var/lib/locate
+  Short Descriptions
+    find: Searches given directory trees for files matching the specified criteria
+    locate: Searches through a database of file names and reports the names that contain a given string or match a given pattern
+    updatedb: Updates the locate database; it scans the entire file system (including other file systems that are currently mounted, unless told not to) and puts every file name it finds into the database
+    xargs: Can be used to apply a given command to a list of files
+
+in:
+  version: 4.8.0
+
+provision:
+  - url:
+      from: https://ftp.gnu.org/gnu/findutils/findutils-{% version %}.tar.xz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr --localstatedir=/var/lib/locate
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/findutils-{% version %}"
+
+
