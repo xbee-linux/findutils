@@ -12,20 +12,20 @@ description: |
     updatedb: Updates the locate database; it scans the entire file system (including other file systems that are currently mounted, unless told not to) and puts every file name it finds into the database
     xargs: Can be used to apply a given command to a list of files
 
-in:
+var:
   version: 4.8.0
 
 provision:
   - url:
-      from: https://ftp.gnu.org/gnu/findutils/findutils-{% version %}.tar.xz
-      todir: "{% xbeeSrc %}"
+      from: https://ftp.gnu.org/gnu/findutils/findutils-{{ .version }}.tar.xz
+      todir: "{{ .xbee.src }}"
 
 build:
   - shell:
       cmds:
         - ./configure --prefix=/usr --localstatedir=/var/lib/locate
         - make
-        - make install DESTDIR={% xbeeOut %}
-      directory: "{% xbeeSrc %}/findutils-{% version %}"
+        - make install DESTDIR={{ .xbee.out }}
+      directory: "{{ .xbee.src }}/findutils-{{ .version }}"
 
 
