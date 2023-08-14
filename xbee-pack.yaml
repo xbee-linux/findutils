@@ -16,9 +16,7 @@ var:
   version: 4.8.0
 
 provision:
-  - url:
-      from: https://ftp.gnu.org/gnu/findutils/findutils-{{ .version }}.tar.xz
-      todir: "{{ .xbee.src }}"
+  url: https://ftp.gnu.org/gnu/findutils/findutils-{{ .version }}.tar.xz
 
 build:
   - shell:
