@@ -13,7 +13,8 @@ description: |
     xargs: Can be used to apply a given command to a list of files
 
 var:
-  version: 4.8.0
+  xbee:
+    version: 4.8.0
 
 provision:
   url: https://ftp.gnu.org/gnu/findutils/findutils-{{ .version }}.tar.xz
