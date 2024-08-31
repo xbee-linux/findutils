@@ -17,7 +17,7 @@ var:
     version: 4.8.0
 
 provision:
-  url: https://ftp.gnu.org/gnu/findutils/findutils-{{ .version }}.tar.xz
+  url: https://ftp.gnu.org/gnu/findutils/findutils-{{ .xbee.version }}.tar.xz
 
 build:
   - shell:
@@ -25,6 +25,6 @@ build:
         - ./configure --prefix=/usr --localstatedir=/var/lib/locate
         - make
         - make install DESTDIR={{ .xbee.out }}
-      directory: "{{ .xbee.src }}/findutils-{{ .version }}"
+      directory: "{{ .xbee.src }}/findutils-{{ .xbee.version }}"
 
 
